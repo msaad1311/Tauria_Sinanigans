@@ -36,113 +36,21 @@
       </div>
     </nav>
 
-    <div class="container frames">
-      <form action="\video_feed1" method="POST"></form>
-        <div class="row">
-          <img src="{{url_for('video_feed1')}}" width="480px" height="512px" />
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <h3 class="mt-5">Live Streaming Demonstration</h3>
+          <img src="{{ url_for('video_feed') }}" width="100%" />
         </div>
-        <div class="row cartoon-button">
-          <div class="form-check form-check-inline">
-            <input
-              id="cartoonizer"
-              class="form-check-input"
-              type="checkbox"
-              data-toggle="switchbutton"
-              data-style="border"
-              unchecked
-            />
-            <label for="cartoonizer" class="form-check-label">Cartoonize</label>
-          </div>
-        </div>
+        
 
-        <!-- <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-body">
-                 Source 
-                <h5 class="card-title">Background</h5>
-                <select name="backers" id="backers" required="required">
-                  <option value="None">No Selection</option>
-                  <option value="Office">Office</option>
-                  <option value="Hallway">Hallway</option>
-                  <option value="Room">Room</option>
-                  <option value="Meeting">Meeting Room</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div> -->
+      </div>
 
-        <!-- <div class="form-check form-check-inline">
-          <input id="cartoonizer" class="form-check-input" type="checkbox" data-toggle="switchbutton" data-style="border" unchecked>
-          <label for="grayer" class="form-check-label">Grayscale</label>
-        </div> -->
-
-        <div class="row" id="backers">
-          <div class="col-md-2">
-            <button type="submit" name="submit_button" value="lion">
-              Upload
-            </button>
-            <!-- <img src="static\backgrounds\background2.jpg" alt="Office" class="backgrounds" id="lake"> -->
-          </div>
-
-          <div class="col-md-2">
-            <img
-              src="static\backgrounds\background3.jpg"
-              alt="Hallway"
-              class="backgrounds"
-              id="office"
-            />
-          </div>
-
-          <div class="col-md-2">
-            <img
-              src="static\backgrounds\background4.jpg"
-              alt="Room"
-              class="backgrounds"
-              id="japanese"
-            />
-          </div>
-
-          <div class="col-md-2">
-            <img
-              src="static\backgrounds\background5.jpg"
-              alt="Meeting Room"
-              class="backgrounds"
-              id="niagaraFalls"
-            />
-          </div>
-
-          <div class="col-md-2">
-            <img
-              src="static\backgrounds\background6.jpg"
-              alt="Space"
-              class="backgrounds"
-              id="tajMahal"
-            />
-          </div>
-        </div>
-        <div>
-          <input type="submit" value="Calculate" class="btn btn-primary" />
-        </div>
+      <div class="row">
+        <form action="/video_feed1" method="POST">
+        <button type="submit" name="submit_button" value="lion">Upload</button>
       </form>
+      </div>
     </div>
-    <!-- <script type="text/javascript">
-            //Selector for your <video> element
-            const video = document.querySelector('#webcam');
-        
-            //Core
-            window.navigator.mediaDevices.getUserMedia({ video: true })
-                .then(stream => {
-                    video.srcObject = stream;
-                    video.onloadedmetadata = (e) => {
-                        video.play();
-                    };
-                })
-                .catch( () => {
-                    alert('You have give browser the permission to run Webcam and mic ;( ');
-                });
-        
-        </script> -->
   </body>
 </html>
