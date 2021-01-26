@@ -23,7 +23,7 @@
 
     <div class="container frames">
         <div class="row">
-          <img src="{{url_for('video_feed1')}}" class="img-fluid">
+          <img src="{{url_for('video_feed1')}}" width="480px" height="512px" >
         </div>
         
         <div class="row cartoon-button">
@@ -33,13 +33,13 @@
           </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-12">
             <div class="card">
               <div class="card-body">
-                <!-- Source -->
+                 Source 
                 <h5 class="card-title">Background</h5>
-                <select name="background" id="backers" required="required">
+                <select name="backers" id="backers" required="required">
                   <option value="None">No Selection</option>
                   <option value="Office">Office</option>
                   <option value="Hallway">Hallway</option>
@@ -49,7 +49,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         
         
 
@@ -60,7 +60,8 @@
 
         <div class="row" id="backers">
           <div class=col-md-2>
-            <img src="static\backgrounds\background2.jpg" alt="Office" class="backgrounds" id="lake">
+            <button type="submit" name="submit_button" value="lion">Upload</button>
+            <!-- <img src="static\backgrounds\background2.jpg" alt="Office" class="backgrounds" id="lake"> -->
           </div>
           
           <div class=col-md-2>
