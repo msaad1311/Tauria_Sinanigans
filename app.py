@@ -129,6 +129,9 @@ def video_feed1():
     if request.method=='POST':
         x = gen_frames()
         return Response(cartoonizer(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    else:
+        print('into the get method')
+        return render_template('index.html')
 
         
 
