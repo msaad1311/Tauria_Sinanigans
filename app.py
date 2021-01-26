@@ -89,8 +89,8 @@ def cartoonizer():
             matte_tensor = matte_tensor.repeat(1, 3, 1, 1)
             matte_np = matte_tensor[0].data.cpu().numpy().transpose(1, 2, 0)
             idx = 'Office'#
-            if request.form['submit_button'] == "Lion":
-                print('yes')
+            p = request.form['submit_button']
+            print(p)
             
             background = backgroundSelector(idx)
             # print(type(background))
@@ -124,10 +124,11 @@ def video_feed():
     x = gen_frames()
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route('/video_feed1')
+@app.route('/video_feed1',methods=["GET", "POST"])
 def video_feed1():
-    x = gen_frames()
-    return Response(cartoonizer(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    if request.method=='POST':
+        x = gen_frames()
+        return Response(cartoonizer(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
         
 
