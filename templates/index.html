@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="stylesheet" href="static/style.css" />
     <link
       href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"
       rel="stylesheet"
@@ -42,15 +42,61 @@
           <h3 class="mt-5">Live Streaming Demonstration</h3>
           <img src="{{ url_for('video_feed') }}" width="100%" />
         </div>
-        
-
       </div>
+      <form action="/video_feed" method="POST">
+        <div class="row center">
+          <div class="col-md-3">
+            <button type="submit" name="submit_button" value="office">
+              <img
+                src="static\backgrounds\background2.jpg"
+                alt="Office"
+                class="backgrounds"
+                id="lake"
+              />
+            </button>
+          </div>
 
-      <div class="row">
-        <form action="/video_feed1" method="POST">
-        <button type="submit" name="submit_button" value="lion">Upload</button>
+          <div class="col-md-3">
+            <button type="submit" name="submit_button" value="hallway">
+              <img
+                src="static\backgrounds\background3.jpg"
+                alt="Hallway"
+                class="backgrounds"
+                id="lake"
+              />
+            </button>
+          </div>
+
+          <div class="col-md-3">
+            <button type="submit" name="submit_button" value="room">
+              <img
+                src="static\backgrounds\background4.jpg"
+                alt="Room"
+                class="backgrounds"
+                id="lake"
+              />
+            </button>
+          </div>
+          <div class="col-md-3">
+            <button type="submit" name="submit_button" value="meeting">
+              <img
+                src="static\backgrounds\background5.jpg"
+                alt="Meeting Room"
+                class="backgrounds"
+                id="lake"
+              />
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <button type="checkbox" name="other_button" value="yes">
+              hello
+            </button>
+          </div>
+        </div>
       </form>
-      </div>
     </div>
   </body>
 </html>
