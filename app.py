@@ -48,10 +48,17 @@ inv_normalize = transforms.Normalize(
 def home():
     return render_template("index.html")
 
-def backgroundSelector():
-    idx = request.form['backers']
-    print(idx)
-    return cv2.imread(fr'static\backgrounds\background{idx}.jpg')
+def backgroundSelector(idx):
+    if idx == 'Office':
+        return cv2.imread(fr'static\backgrounds\background2.jpg')
+    elif idx == 'Hallway':
+        return cv2.imread(fr'static\backgrounds\background3.jpg')
+    elif idx == 'Room':
+        return cv2.imread(fr'static\backgrounds\background4.jpg')
+    elif idx == 'Meeting':
+        return cv2.imread(fr'static\backgrounds\background5.jpg')
+    else:
+        return False
 
 def gen_frames():  
     while True:
@@ -81,13 +88,18 @@ def cartoonizer():
 
             matte_tensor = matte_tensor.repeat(1, 3, 1, 1)
             matte_np = matte_tensor[0].data.cpu().numpy().transpose(1, 2, 0)
+            idx = request.form['backers']
+            print(idx)
             
-            idx = 5
-            background = cv2.imread(fr'static\backgrounds\background{idx}.jpg')
-            background = cv2.resize(background,(matte_np.shape[1],matte_np.shape[0]))
-            background = cv2.cvtColor(background,cv2.COLOR_BGR2RGB)
+            background = backgroundSelector(idx)
+            print(background)
+            if background==False:
+                fg_np = np.array(matte_np * frame_np + (1 - matte_np) * np.full(frame_np.shape, frame_np))
+            else:
+                background = cv2.resize(background,(matte_np.shape[1],matte_np.shape[0]))
+                background = cv2.cvtColor(background,cv2.COLOR_BGR2RGB)
+                fg_np = np.array(matte_np * frame_np + (1 - matte_np) * np.full(frame_np.shape, background))
             
-            fg_np = np.array(matte_np * frame_np + (1 - matte_np) * np.full(frame_np.shape, background))
             fg_np = fg_np.astype(np.uint8)
             fg_np = cv2.cvtColor(fg_np,cv2.COLOR_BGR2RGB)
         #     fg_np = torch.tensor(fg_np)
@@ -111,10 +123,15 @@ def video_feed():
     x = gen_frames()
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route('/video_feed1')
+@app.route('/video_feed1',methods=["GET", "POST"])
 def video_feed1():
-    x = gen_frames()
-    return Response(cartoonizer(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    if request.method == 'POST':
+        x = gen_frames()
+        return Response(cartoonizer(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    else:
+        print('in the get command')
+        return render_template("index.html")
+
         
 
 if __name__ == "__main__":
