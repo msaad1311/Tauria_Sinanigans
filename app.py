@@ -134,8 +134,8 @@ def video_feed():
         bg = bgSelector(bg)
         # print(bg)
         if bg is None:
-            return Response(gen_frames(),
-                        mimetype='multipart/x-mixed-replace; boundary=frame')
+            return render_template('index.html',Response(gen_frames(),
+                        mimetype='multipart/x-mixed-replace; boundary=frame'))
         else:
             return Response(cartoonizer(bg,cr),
                             mimetype='multipart/x-mixed-replace; boundary=frame')
