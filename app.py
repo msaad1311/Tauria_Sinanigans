@@ -60,7 +60,7 @@ def gen_frames():
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
             
-def cartoonizer(bg):
+def cartoonizer(bg,cr):
     while True:
         success, frame = cap.read()  # read the camera frame
         if not success:
@@ -80,7 +80,6 @@ def cartoonizer(bg):
             matte_np = matte_tensor[0].data.cpu().numpy().transpose(1, 2, 0)
             
             background = bg
-            # print(type(background))
             if background is None:
                 fg_np = np.array(matte_np * frame_np + (1 - matte_np) * np.full(frame_np.shape, frame_np))
             else:
@@ -89,18 +88,23 @@ def cartoonizer(bg):
                 fg_np = np.array(matte_np * frame_np + (1 - matte_np) * np.full(frame_np.shape, background))
             
             fg_np = fg_np.astype(np.uint8)
-            fg_np = cv2.cvtColor(fg_np,cv2.COLOR_BGR2RGB)
-        #     fg_np = torch.tensor(fg_np)
-            fg_np1 = preprocess(fg_np).unsqueeze(0).to(device).to(torch.float32)
-            car_generator.eval()
             
-            with torch.no_grad():
-                cartoonImage = car_generator(fg_np1)
-            car_generator.train()
-            cartoonImage1 = inv_normalize(cartoonImage).squeeze(0).permute(1,2,0).cpu().numpy()
-            a = cv2.convertScaleAbs(cartoonImage1, alpha=(255.0))
-            a = cv2.flip(a,1)
-            a = cv2.cvtColor(a,cv2.COLOR_BGR2RGB)
+            if cr=='Yes':
+                fg_np = cv2.cvtColor(fg_np,cv2.COLOR_BGR2RGB)
+            #     fg_np = torch.tensor(fg_np)
+                fg_np1 = preprocess(fg_np).unsqueeze(0).to(device).to(torch.float32)
+                car_generator.eval()
+                
+                with torch.no_grad():
+                    cartoonImage = car_generator(fg_np1)
+                car_generator.train()
+                cartoonImage1 = inv_normalize(cartoonImage).squeeze(0).permute(1,2,0).cpu().numpy()
+                a = cv2.convertScaleAbs(cartoonImage1, alpha=(255.0))
+                a = cv2.flip(a,1)
+                a = cv2.cvtColor(a,cv2.COLOR_BGR2RGB)
+            else:
+                a = fg_np
+                a = cv2.flip(a,1)
             ret,frame1=cv2.imencode('.jpg', a)
             frame = frame1.tobytes()
             yield (b'--frame\r\n'
@@ -123,17 +127,18 @@ def bgSelector(idx):
 def video_feed():
     """Video streaming route. Put this in the src attribute of an img tag."""
     if request.method == 'POST':
-        bg = request.form['submit_button'].capitalize()
-        # cr = request.form['other_button']
+        bg = request.form['backers'].capitalize()
+        cr = request.form['cartoonize']
+        # print('heyyyyy loooww',bg)
         # print(cr)
         bg = bgSelector(bg)
         # print(bg)
-    #     if bg is None:
-        return Response(gen_frames(),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
-    #     else:
-    #         return Response(cartoonizer(bg),
-    #                         mimetype='multipart/x-mixed-replace; boundary=frame')
+        if bg is None:
+            return Response(gen_frames(),
+                        mimetype='multipart/x-mixed-replace; boundary=frame')
+        else:
+            return Response(cartoonizer(bg,cr),
+                            mimetype='multipart/x-mixed-replace; boundary=frame')
     return Response(gen_frames(),
                         mimetype='multipart/x-mixed-replace; boundary=frame')
 

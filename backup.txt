@@ -1,4 +1,58 @@
+27/01/2021
+<div class="col-md-3">
+            <button
+              type="submit"
+              name="submit_button"
+              value="office"
+            >
+              <img
+                src="static\backgrounds\background2.jpg"
+                alt="Office"
+                class="backgrounds"
+                id="lake"
+              />
+            </button>
+          </div>
 
+          <div class="col-md-3">
+            <button type="submit" name="submit_button" value="hallway">
+              <img
+                src="static\backgrounds\background3.jpg"
+                alt="Hallway"
+                class="backgrounds"
+                id="lake"
+              />
+            </button>
+          </div>
+
+          <div class="col-md-3">
+            <button
+              type="submit"
+              name="submit_button"
+              value="room"
+              class="buttono"
+            >
+              <img
+                src="static\backgrounds\background4.jpg"
+                alt="Room"
+                class="backgrounds"
+                id="lake"
+              />
+            </button>
+          </div>
+          <div class="col-md-3">
+            <button type="submit" name="submit_button" value="meeting">
+              <img
+                src="static\backgrounds\background5.jpg"
+                alt="Meeting Room"
+                class="backgrounds"
+                id="lake"
+              />
+            </button>
+          </div>
+        </div>
+--------------------------------------------------------------------------------------------------------------------------------
+26/01/2021
 
     <!-- 
     <div class="container frames">
