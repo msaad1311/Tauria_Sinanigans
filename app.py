@@ -124,16 +124,16 @@ def video_feed():
     """Video streaming route. Put this in the src attribute of an img tag."""
     if request.method == 'POST':
         bg = request.form['submit_button'].capitalize()
-        cr = request.form['other_button']
-        print(cr)
+        # cr = request.form['other_button']
+        # print(cr)
         bg = bgSelector(bg)
         # print(bg)
-        if bg is None:
-            return Response(gen_frames(),
-                        mimetype='multipart/x-mixed-replace; boundary=frame')
-        else:
-            return Response(cartoonizer(bg),
-                            mimetype='multipart/x-mixed-replace; boundary=frame')
+    #     if bg is None:
+        return Response(gen_frames(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+    #     else:
+    #         return Response(cartoonizer(bg),
+    #                         mimetype='multipart/x-mixed-replace; boundary=frame')
     return Response(gen_frames(),
                         mimetype='multipart/x-mixed-replace; boundary=frame')
 

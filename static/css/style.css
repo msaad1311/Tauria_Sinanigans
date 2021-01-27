@@ -1,3 +1,10 @@
+body{
+  background-color: black;
+}
+.buttono:onclick{
+  opacity: 1;
+}
+
 .frames {
   padding-top: 3em;
 }

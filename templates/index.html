@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="static/style.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
     <link
       href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"
       rel="stylesheet"
@@ -43,10 +43,17 @@
           <img src="{{ url_for('video_feed') }}" width="100%" />
         </div>
       </div>
+      <br />
+      <br />
       <form action="/video_feed" method="POST">
         <div class="row center">
           <div class="col-md-3">
-            <button type="submit" name="submit_button" value="office">
+            <button
+              type="submit"
+              name="submit_button"
+              value="office"
+              onclick="handleForm()"
+            >
               <img
                 src="static\backgrounds\background2.jpg"
                 alt="Office"
@@ -68,7 +75,12 @@
           </div>
 
           <div class="col-md-3">
-            <button type="submit" name="submit_button" value="room">
+            <button
+              type="submit"
+              name="submit_button"
+              value="room"
+              class="buttono"
+            >
               <img
                 src="static\backgrounds\background4.jpg"
                 alt="Room"
@@ -98,5 +110,6 @@
         </div>
       </form>
     </div>
+    <script src="tesster.js"></script>
   </body>
 </html>
