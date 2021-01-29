@@ -112,13 +112,13 @@ def cartoonizer(bg,cr):
             
 def bgSelector(idx):
     if idx == 'Office':
-        return cv2.imread(fr'static\backgrounds\background2.jpg')
+        return cv2.imread(r'static\backgrounds\background2.jpg')
     elif idx == 'Hallway':
-        return cv2.imread(fr'static\backgrounds\background3.jpg')
+        return cv2.imread(r'static\backgrounds\background3.jpg')
     elif idx == 'Room':
-        return cv2.imread(fr'static\backgrounds\background4.jpg')
+        return cv2.imread(r'static\backgrounds\background4.jpg')
     elif idx == 'Meeting':
-        return cv2.imread(fr'static\backgrounds\background5.jpg')
+        return cv2.imread(r'static\backgrounds\background5.jpg')
     else:
         return None
 
