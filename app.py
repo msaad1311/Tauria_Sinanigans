@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template,Response
-import modules
+import backgroundModules
 
 app = Flask(__name__)
 
@@ -21,7 +21,7 @@ def res():
 def video_feed():
 	global result
 	params= result
-	return Response(modules.cartoonizer(params),mimetype='multipart/x-mixed-replace; boundary=frame')
+	return Response(backgroundModules.cartoonizer(params),mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == "__main__":
     app.run(debug=True,threaded=True)
