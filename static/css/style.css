@@ -1,39 +1,12 @@
-body{
-  background-color: black;
-}
-.buttono:onclick{
-  opacity: 1;
+.bodys{
+  background-color: rgba(70, 70, 172, 0.548);
 }
 
-.frames {
-  padding-top: 3em;
+.center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 70vh;
 }
-
-#canvas {
-  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
-}
-
-.reshape {
-  width: 1190px;
-  height: 960px;
-}
-
-.backgrounds {
-  height: 150px;
-  width: 210px;
-  margin: 10px;
-  border-style: none;
-  opacity: 0.5;
-  /* margin-right: 20px;
-    display: block; */
-}
-
-.backgrounds:hover {
-  opacity: 1;
-}
-
-.cartoon-button {
-  padding-left: 500px;
-  padding-top: 10px;
-}
-
