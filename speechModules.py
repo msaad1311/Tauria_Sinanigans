@@ -204,7 +204,7 @@ def mixer(clean,noisy,snr,scaler):
 def predict(duration,lipsModel,combModel,batchSize,resulFile):
 
     # Load the input wav
-    cleanAudio1 = start_strem(duration)
+    cleanAudio1 = start_strem(  )
     print('#'*80)
     print('input file loaded')
     print('#'*80)
